@@ -39,7 +39,7 @@ app.use(
     },
   })
 );
-app.use("v1/auth", authroute);
+// app.use("v1/auth", authroute);
 
 app.get("/", (req, res) => {
   res.send("Memory App");
