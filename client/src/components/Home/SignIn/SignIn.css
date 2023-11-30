@@ -1,0 +1,17 @@
+.SignIn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.SignIn>input {
+    height: 2em;
+}
+
+.Sign-In-Button-Form {
+    width: 100%;
+    padding: 1em 0;
+    margin: 0 0.2em;
+    margin: auto;
+}
