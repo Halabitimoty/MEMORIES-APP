@@ -23,6 +23,8 @@ database
     console.log("db-not-connected");
   });
 
+const authroute = require("./app/routes/auth/auth");
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -39,7 +41,7 @@ app.use(
     },
   })
 );
-// app.use("v1/auth", authroute);
+app.use("v1/auth", authroute);
 
 app.get("/", (req, res) => {
   res.send("Memory App");
