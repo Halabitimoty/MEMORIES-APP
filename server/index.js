@@ -28,7 +28,7 @@ const authroute = require("./app/routes/auth/auth");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors({ origin: "http://localhost:5173/" }));
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use(
   session({
     secret: process.env.session,
