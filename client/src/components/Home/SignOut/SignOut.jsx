@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
-import { logout } from "../../../slice/authSlice";
+import { SignOutAction } from "../../../actions/authAction";
 
 function SignOut() {
   const dispatch = useDispatch();
   const handleSignout = () => {
-    dispatch(logout());
+    dispatch(SignOutAction());
   };
   return (
     <div className="SignOut">

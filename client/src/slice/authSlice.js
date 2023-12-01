@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SignInAction } from "../actions/authAction";
+import { SignInAction, SignOutAction } from "../actions/authAction";
 
 const initialState = {
   isAuthenticated: false,
@@ -11,12 +11,7 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    logout: (state) => {
-      state.isAuthenticated = true;
-      state.userData = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(SignInAction.pending, (state) => {
       state.loading = true;
@@ -24,18 +19,28 @@ const authSlice = createSlice({
     }),
       builder.addCase(SignInAction.fulfilled, (state, action) => {
         state.loading = false;
-        state.isAuthenticated =
-          action.payload === null || action.payload === undefined
-            ? true
-            : false;
+        state.isAuthenticated = action.payload ? true : false;
         state.userData = action.payload;
       }),
       builder.addCase(SignInAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.errorMessage;
+      }),
+      /**  SignOutAction*/
+      builder.addCase(SignOutAction.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      }),
+      builder.addCase(SignOutAction.fulfilled, (state) => {
+        state.loading = false;
+        state.isAuthenticated = false;
+        state.userData = null;
+      }),
+      builder.addCase(SignOutAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload.errorMessage;
       });
   },
 });
 
-export const { logout } = authSlice.actions;
 export default authSlice.reducer;

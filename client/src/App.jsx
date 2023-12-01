@@ -4,10 +4,8 @@ import { useSelector } from "react-redux";
 import SignOut from "./components/Home/SignOut/SignOut";
 
 function App() {
-  const { isAuthenticated, userData } = useSelector((state) => state.auth);
-  console.log(userData);
-  console.log(isAuthenticated);
-  return <div className="App">{isAuthenticated ? <Home /> : <SignOut />}</div>;
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  return <div className="App">{isAuthenticated ? <SignOut /> : <Home />}</div>;
 }
 
 export default App;
