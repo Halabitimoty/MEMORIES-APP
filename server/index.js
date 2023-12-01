@@ -34,7 +34,7 @@ app.use(
     secret: process.env.session,
     resave: false,
     saveUninitialized: false,
-    dbstore,
+    store: dbstore,
     cookie: {
       httpOnly: true,
       secure: true,
