@@ -7,13 +7,14 @@ function SignIn() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
   const [signInData, setSignInData] = useState({ email: "", password: "" });
-  const handlelogin = () => {
+  const handlelogin = (e) => {
+    e.preventDefault();
     dispatch(SignInAction(signInData));
   };
 
   return (
     <>
-      <form action="" className="SignIn">
+      <form action="" className="SignIn" method="post">
         <input
           type="email"
           name="email"

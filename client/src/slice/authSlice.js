@@ -17,21 +17,23 @@ const authSlice = createSlice({
       state.userData = null;
     },
   },
-  extraReducers: {
-    [SignInAction.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(SignInAction.pending, (state) => {
       state.loading = true;
       state.error = null;
-    },
-  },
-  [SignInAction.fulfilled]: (state, action) => {
-    state.loading = false;
-    state.isAuthenticated = true;
-    state.userData = action.payload.user;
-    localStorage.setItem("token", action.payload.token);
-  },
-  [SignInAction.rejected]: (state, action) => {
-    state.loading = false;
-    state.error = action.payload.errorMessage;
+    }),
+      builder.addCase(SignInAction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isAuthenticated =
+          action.payload === null || action.payload === undefined
+            ? true
+            : false;
+        state.userData = action.payload;
+      }),
+      builder.addCase(SignInAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.errorMessage;
+      });
   },
 });
 

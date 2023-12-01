@@ -1,11 +1,16 @@
 import axios from "axios";
 
-const baseurl = "";
+const baseurl = "http://localhost:3002";
 
-export const sigIn = (data) => {
-  axios.post(`${baseurl}/v1/login`, data);
+export const sigIn = async (data) => {
+  try {
+    const respose = await axios.post(`${baseurl}/v1/auth/login`, data);
+    return respose.data;
+  } catch (error) {
+    console.log("wrong request");
+  }
 };
 
-export const sigUp = (data) => {
-  axios.post(`${baseurl}/v1/register`, data);
+export const sigUp = async (data) => {
+  await axios.post(`${baseurl}/v1/auth/register`, data);
 };
