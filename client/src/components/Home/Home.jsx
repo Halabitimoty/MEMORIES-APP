@@ -1,24 +1,20 @@
-import { useState } from "react";
 import "./Home.css";
-import SignIn from "./SignIn/SignIn";
-import SignUp from "./SignUp/SignUp";
+import { Outlet, Link } from "react-router-dom";
 
 function Home() {
-  const [toggleForm, setToggleForm] = useState(true);
-
   return (
     <div className="Home">
       <div className="Home-Title">Memory App</div>
       <div className="Home-Toggle">
-        <button className="Sign-In-Button" onClick={() => setToggleForm(true)}>
+        <Link to="/" className="Sign-In-Button">
           Sign In
-        </button>
-        <button className="Sign-Up-Button" onClick={() => setToggleForm(false)}>
+        </Link>
+        <Link to="/signup" className="Sign-Up-Button">
           Sign Up
-        </button>
+        </Link>
       </div>
       <section className="Sign-Form">
-        {toggleForm ? <SignIn /> : <SignUp />}
+        <Outlet />
       </section>
     </div>
   );

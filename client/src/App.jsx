@@ -1,11 +1,22 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import "./App.css";
-import { useSelector } from "react-redux";
-import SignOut from "./components/Home/SignOut/SignOut";
+import SignIn from "./components/Home/SignIn/SignIn";
+import SignUp from "./components/Home/SignUp/SignUp";
 
 function App() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
-  return <div className="App">{isAuthenticated ? <SignOut /> : <Home />}</div>;
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Home />}>
+            <Route path="/" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

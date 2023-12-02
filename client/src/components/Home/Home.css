@@ -2,16 +2,25 @@
     width: 100%;
     border: 1px solid red;
     text-align: center;
-    padding: 2em 0;
-    height: 500px;
+    padding: 3em 0;
 }
 
-.Sign-In-Button,
-.Sign-Up-Button {
-    width: 40%;
+.Home-Title {
     padding: 1em 0;
+}
+
+.Home-Toggle {
+    padding: 1em 0;
+}
+
+.Home-Toggle>a {
+    text-decoration: none;
+    color: white;
+    padding: 1em 2em;
     border: 1px solid red;
 }
+
+
 
 
 
@@ -27,8 +36,8 @@
         width: 75%;
         margin: auto;
     }
-}
 
-.Home-Title {
-    height: 50px;
+    .Home-Toggle>a {
+        padding: 1em 4em;
+    }
 }
