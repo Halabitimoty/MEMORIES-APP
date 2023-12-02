@@ -8,4 +8,4 @@ const sessionauth = (req, res, next) => {
   }
 };
 
-module.exports = { sessionauth };
+module.exports = sessionauth;

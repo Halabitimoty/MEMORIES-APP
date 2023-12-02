@@ -22,4 +22,4 @@ const isuserloggedin = (req, res, next) => {
   next();
 };
 
-module.exports = { isuserloggedin };
+module.exports = isuserloggedin;

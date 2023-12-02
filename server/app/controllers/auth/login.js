@@ -43,11 +43,13 @@ const login = async (req, res) => {
     );
 
     req.session.isAuth = true;
+    req.session.user = { token };
 
     res.status(200).send({
       success: true,
       message: "login successful",
       userid: _id,
+      session_id: req.session.id,
       token,
     });
   } catch (error) {

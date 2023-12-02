@@ -25,22 +25,18 @@ database
 
 const authroute = require("./app/routes/auth/auth");
 
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors({ origin: "http://localhost:5173" }));
 app.use(
   session({
     secret: process.env.session,
     resave: false,
     saveUninitialized: false,
     store: dbstore,
-    cookie: {
-      httpOnly: true,
-      secure: true,
-    },
   })
 );
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cors({ origin: "http://localhost:5173" }));
 
 app.use("/v1/auth", authroute);
 
