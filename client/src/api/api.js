@@ -24,10 +24,11 @@ export const getProfile = async (header) => {
     console.log("getprofile-error");
   }
 };
+
 export const sigOut = async (data) => {
   try {
-    const respose = await axios.post(`${baseurl}/v1/auth/logout`, data);
-    return respose.data;
+    const response = await axios.post(`${baseurl}/v1/auth/logout`, data);
+    return response.data;
   } catch (error) {
     console.log("signed-out-error");
   }
