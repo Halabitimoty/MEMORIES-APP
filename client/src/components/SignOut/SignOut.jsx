@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { SignOutAction } from "../../../actions/authAction";
+import { SignOutAction } from "../../actions/authAction";
 
 function SignOut() {
   const getsessionID = sessionStorage.getItem("user");
