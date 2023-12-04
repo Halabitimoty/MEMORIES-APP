@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 function Dashboard() {
   const { isAuthenticated } = useSelector((state) => state.auth);
   if (!isAuthenticated) {
-    return <Navigate to="/signin" />;
+    return <Navigate to="/" />;
   }
   return <Outlet />;
 }
