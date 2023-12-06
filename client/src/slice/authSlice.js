@@ -21,6 +21,7 @@ const authSlice = createSlice({
       .addCase(SignInAction.fulfilled, (state, action) => {
         state.loading = false;
         state.userData = action.payload;
+        state.userData && (state.isAuthenticated = true);
         state.userData &&
           sessionStorage.setItem("user", JSON.stringify(action.payload));
         sessionStorage.setItem(

@@ -1,12 +1,7 @@
 import "./Dashboard.css";
-import { Outlet, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
 
 function Dashboard() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
-  if (!isAuthenticated) {
-    return <Navigate to="/" />;
-  }
   return <Outlet />;
 }
 

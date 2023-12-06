@@ -14,10 +14,9 @@ function SignIn() {
     e.preventDefault();
     dispatch(SignInAction(signInData))
       .then((data) => {
-        if (data.payload.success) navigate("/profile");
-        navigate("/");
+        if (data.payload) navigate("/profile");
       })
-      .catch((err) => null);
+      .catch((err) => console.log(err));
     setSignInData({ email: "", password: "" });
   };
 
