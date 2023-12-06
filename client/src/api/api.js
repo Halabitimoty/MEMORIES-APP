@@ -4,10 +4,10 @@ const baseurl = "http://localhost:3002";
 
 export const sigIn = async (data) => {
   try {
-    const respose = await axios.post(`${baseurl}/v1/auth/login`, data);
-    return respose.data;
+    const response = await axios.post(`${baseurl}/v1/auth/login`, data);
+    return response.data;
   } catch (error) {
-    console.log("signed-in-error");
+    return null;
   }
 };
 

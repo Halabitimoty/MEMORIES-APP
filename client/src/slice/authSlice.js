@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SignInAction, SignOutAction } from "../actions/authAction";
+import { SignInAction } from "../actions/authAction";
 
 const initialState = {
   isAuthenticated: false,
@@ -13,31 +13,22 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(SignInAction.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    }),
-      builder.addCase(SignInAction.fulfilled, (state, action) => {
-        state.loading = false;
-        state.isAuthenticated = action.payload ? true : false;
-        state.userData = action.payload;
-        sessionStorage.setItem("user", JSON.stringify(action.payload));
-      }),
-      builder.addCase(SignInAction.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload.errorMessage;
-      }),
-      /**  SignOutAction*/
-      builder.addCase(SignOutAction.pending, (state) => {
+    builder
+      .addCase(SignInAction.pending, (state) => {
         state.loading = true;
         state.error = null;
-      }),
-      builder.addCase(SignOutAction.fulfilled, (state) => {
+      })
+      .addCase(SignInAction.fulfilled, (state, action) => {
         state.loading = false;
-        state.isAuthenticated = false;
-        state.userData = null;
-      }),
-      builder.addCase(SignOutAction.rejected, (state, action) => {
+        state.userData = action.payload;
+        state.userData &&
+          sessionStorage.setItem("user", JSON.stringify(action.payload));
+        sessionStorage.setItem(
+          "isAuthenticated",
+          action.payload ? true : false
+        );
+      })
+      .addCase(SignInAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload.errorMessage;
       });
