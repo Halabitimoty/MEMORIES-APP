@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseurl = "http://localhost:3002";
 
-export const sigIn = async (data) => {
+export const signIn = async (data) => {
   try {
     const response = await axios.post(`${baseurl}/v1/auth/login`, data);
     return response.data;
@@ -11,8 +11,13 @@ export const sigIn = async (data) => {
   }
 };
 
-export const sigUp = async (data) => {
-  await axios.post(`${baseurl}/v1/auth/register`, data);
+export const signUp = async (data) => {
+  try {
+    const response = await axios.post(`${baseurl}/v1/auth/register`, data);
+    return response;
+  } catch (error) {
+    return null;
+  }
 };
 
 export const getProfile = async (header) => {
@@ -25,7 +30,7 @@ export const getProfile = async (header) => {
   }
 };
 
-export const sigOut = async (data) => {
+export const signOut = async (data) => {
   try {
     const response = await axios.post(`${baseurl}/v1/auth/logout`, data);
     return response.data;

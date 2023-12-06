@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { sigIn, sigOut } from "../api/api";
+import { signIn, signOut } from "../api/api";
 
 export const SignInAction = createAsyncThunk(
-  "auth/sigin",
+  "auth/signin",
   async (data, thunkApi) => {
     try {
-      const response = await sigIn(data);
+      const response = await signIn(data);
       return response;
     } catch (error) {
       return thunkApi.rejectWithValue("unable to login.");
@@ -13,11 +13,23 @@ export const SignInAction = createAsyncThunk(
   }
 );
 
+export const SignUpAction = createAsyncThunk(
+  "auth/signup",
+  async (data, thunkApi) => {
+    try {
+      const response = await signIn(data);
+      return response;
+    } catch (error) {
+      return thunkApi.rejectWithValue("unable to signup.");
+    }
+  }
+);
+
 export const SignOutAction = createAsyncThunk(
-  "auth/sigout",
+  "auth/signout",
   async (thunkApi) => {
     try {
-      const response = await sigOut();
+      const response = await signOut();
       return response;
     } catch (error) {
       return thunkApi.rejectWithValue("unable to logout.");
